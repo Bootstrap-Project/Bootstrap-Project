@@ -1,5 +1,5 @@
 
-factory function(name,price,size,colors,img){
+function factory (name,price,size,colors,img){
 	return {
 		name: name,
 		price:price,
@@ -46,7 +46,7 @@ var loged = "hidden"
 	  			</div>
 			  	<div class="info">
 			  		<button class="buyBtn" id="${index}">Buy now</button>
-			  		<button class="delBtn" style="background-color:red;" id="D${index}" ${loged} >DELETE</button>
+			  		<button class="delBtn" style="background-color:red" id="D${index}" ${loged}>DELETE</button>
 			  		<p>${obj.name}</p>
 			  		<p>Size: ${obj.size}</p>
 
@@ -158,6 +158,15 @@ $("#myModal").css("display" , "none");
 	$("#loging").hide();
 	$("#logout").show();
 	
+
+	$(".delBtn").on('click',function(){
+	var x = $(this).attr("id");
+	loged=""
+	database.splice(parseInt(x.substr(1)),1);
+	showItem()
+})
+
+	
 }else{
 	alert("Access denied");
 }
@@ -174,11 +183,7 @@ $("#logout").click(function(){
 })
 
 
-
 });
-$(".delBtn").click(function(){
-	var x = $(this).attr("id");
-	database.splice(x,1);
-})
+
 });
 
